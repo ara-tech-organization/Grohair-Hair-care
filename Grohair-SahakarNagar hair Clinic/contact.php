@@ -31,8 +31,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$to      = 'Kanchipuram@adgrohair.com';
-$subject = 'New Consultation Booking - GroHair Kanchipuram';
+$to      = 'sahakaranagar@adgrohair.com';
+$subject = 'New Consultation Booking - GroHair Sahakar Nagar';
 
 $body  = "New consultation booking request:\n\n";
 $body .= "Name    : $name\n";
