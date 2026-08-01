@@ -92,10 +92,10 @@ export default function Hero() {
         <div className="mb-4 text-center pt-4">
           <h1 className="hero-title text-[26px] leading-[32px] font-bold text-white mb-1 drop-shadow-md">
             Consult Expert Hair<br />
-            Doctor in Avinashi
+            Doctor in Avinashi Road
           </h1>
           <p className="hero-subtitle text-[14px] text-white/90 drop-shadow-md pb-1">
-            Best Hair treatment in Avinashi
+            Best Hair treatment in Avinashi Road
           </p>
         </div>
 
