@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { CallPopupProvider } from './context/CallPopupContext'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import GuaranteeBanner from './components/GuaranteeBanner'
@@ -13,18 +14,20 @@ import ThankYou from './components/ThankYou'
 
 function Home() {
   return (
-    <div className="pb-16">
-      <Header />
-      <Hero />
-      <GuaranteeBanner />
-      <BeforeAfterSection />
-      <FacingSection />
-      <TreatmentsSection />
-      <TransformationSection />
-      <CtaBanner />
-      <Footer />
-      <StickyBottomCta />
-    </div>
+    <CallPopupProvider>
+      <div className="pb-16">
+        <Header />
+        <Hero />
+        <GuaranteeBanner />
+        <BeforeAfterSection />
+        <FacingSection />
+        <TreatmentsSection />
+        <TransformationSection />
+        <CtaBanner />
+        <Footer />
+        <StickyBottomCta />
+      </div>
+    </CallPopupProvider>
   )
 }
 

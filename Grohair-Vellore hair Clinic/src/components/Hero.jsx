@@ -5,7 +5,7 @@ import heroBg from '../assets/hero-bg.jpg'
 export default function Hero() {
   const navigate = useNavigate()
   const [status, setStatus] = useState('idle') // idle | sending | error
-  const [form, setForm] = useState({ name: '', email: '', phone: '', date: '', time: '', message: '' })
+  const [form, setForm] = useState({ name: '', city: '', phone: '', date: '', time: '', message: '' })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -13,7 +13,7 @@ export default function Hero() {
     e.preventDefault()
 
     // Basic Validation
-    if (!form.name || !form.phone || !form.date || !form.time) {
+    if (!form.name || !form.city || !form.phone || !form.date || !form.time) {
       alert('Please fill all required fields')
       return
     }
@@ -39,7 +39,7 @@ export default function Hero() {
       const payload = {
         name: form.name,
         phone: form.phone,
-        email: form.email,
+        city: form.city,
         treatment: 'Hair Treatment',
         message: form.message,
         date: formattedDate,
@@ -57,6 +57,8 @@ export default function Hero() {
       const data = await res.json()
 
       if (data.success) {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({ event: 'lead_form_submitted' })
         navigate('/thankyou')
       } else {
         setStatus('error')
@@ -121,10 +123,10 @@ export default function Hero() {
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
-              {/* Email */}
+              {/* City */}
               <input
-                type="email" name="email" value={form.email} onChange={handleChange}
-                placeholder="Email Address" required
+                type="text" name="city" value={form.city} onChange={handleChange}
+                placeholder="City" required
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
@@ -176,6 +178,19 @@ export default function Hero() {
                 ) : 'Book a Consultation'}
               </button>
             </form>
+
+            <p className="text-[11px] text-white/50 text-center mt-3 leading-relaxed">
+              Zero spam. Your information is protected under our{' '}
+              <a
+                href="https://adgrohairgloskinvellore.in/privacy-policy.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 underline underline-offset-2 hover:text-white"
+              >
+                Privacy Policy
+              </a>
+              .
+            </p>
 
         </div>
 

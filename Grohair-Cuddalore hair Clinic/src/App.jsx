@@ -9,6 +9,7 @@ import TreatmentsSection from './components/TreatmentsSection'
 import CtaBanner from './components/CtaBanner'
 import Footer from './components/Footer'
 import StickyBottomCta from './components/StickyBottomCta'
+import CookieConsent from './components/CookieConsent'
 import ThankYou from './components/ThankYou'
 
 function Home() {
@@ -23,7 +24,10 @@ function Home() {
       <TransformationSection />
       <CtaBanner />
       <Footer />
-      <StickyBottomCta />
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[425px] min-w-[320px] z-50 flex flex-col">
+        <CookieConsent />
+        <StickyBottomCta />
+      </div>
     </div>
   )
 }

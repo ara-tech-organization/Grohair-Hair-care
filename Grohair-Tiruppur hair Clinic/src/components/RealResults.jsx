@@ -10,13 +10,13 @@ export default function RealResults() {
       {/* Before / After */}
       <div className="flex gap-2 mb-5">
         <div className="flex-1 relative rounded-xl overflow-hidden">
-          <img src={beforeImg} alt="Before" className="w-full h-[160px] object-cover" />
+          <img src={beforeImg} alt="Before" loading="lazy" className="w-full h-[160px] object-cover" />
           <span className="absolute bottom-0 left-0 bg-black/60 text-white text-[10px] font-bold px-2 py-1 tracking-widest">
             BEFORE
           </span>
         </div>
         <div className="flex-1 relative rounded-xl overflow-hidden">
-          <img src={afterImg} alt="After" className="w-full h-[160px] object-cover" />
+          <img src={afterImg} alt="After" loading="lazy" className="w-full h-[160px] object-cover" />
           <span className="absolute bottom-0 right-0 bg-red-700/90 text-white text-[10px] font-bold px-2 py-1 tracking-widest">
             AFTER
           </span>

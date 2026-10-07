@@ -1,4 +1,6 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import PhoneIcon from './PhoneIcon'
+import { useCallPopup } from '../context/CallPopupContext'
 
 const issues = [
   {
@@ -37,6 +39,7 @@ const issues = [
 
 export default function FacingSection() {
   const listRef = useScrollReveal()
+  const { openCallPopup } = useCallPopup()
 
   return (
     <section className="px-4 py-7 bg-white">
@@ -76,16 +79,15 @@ export default function FacingSection() {
         ))}
       </div>
 
-      {/* CTA link */}
-      <a
-        href="tel:+918270156789"
-        className="mt-5 flex items-center justify-center gap-2 text-red-700 text-[13px] font-semibold"
+      {/* CTA — opens call pop-up, which shows the number */}
+      <button
+        type="button"
+        onClick={openCallPopup}
+        className="mt-5 flex items-center justify-center gap-2 text-red-700 text-[13px] font-semibold w-full"
       >
+        <PhoneIcon className="w-4 h-4" />
         Talk to a doctor now
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </a>
+      </button>
     </section>
   )
 }

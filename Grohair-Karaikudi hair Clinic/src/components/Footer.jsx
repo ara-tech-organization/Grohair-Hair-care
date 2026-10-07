@@ -15,6 +15,13 @@ const services = [
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=KO+City+Tower,+18,+7th+St,+TT+Nagar,+Sekkalai,+Karaikudi,+Tamil+Nadu+630001'
 
+const legalLinks = [
+  { name: 'Privacy Policy', link: 'https://adgrohairkaraikudi.in/privacy-policy.html' },
+  { name: 'Terms & Conditions', link: 'https://adgrohairkaraikudi.in/terms-conditions.html' },
+  { name: 'Refund & Cancellation Policy', link: 'https://adgrohairkaraikudi.in/refund-cancellation-policy.html' },
+  { name: 'Cookie Policy', link: 'https://adgrohairkaraikudi.in/cookie-policy.html' },
+]
+
 export default function Footer() {
   return (
     <footer id="footer" className="bg-[#0f1117]">
@@ -81,6 +88,21 @@ export default function Footer() {
           <span className="text-[12px] text-white/45 hover:text-red-400 active:text-red-400 transition-colors">adgrohairgloskinkaraikudi@gmail.com</span>
         </a>
 
+      </div>
+
+      {/* ── Legal links ── */}
+      <div className="px-5 py-4 border-b border-white/10 flex flex-wrap justify-center gap-x-4 gap-y-2">
+        {legalLinks.map((l) => (
+          <a
+            key={l.name}
+            href={l.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-white/40 hover:text-red-500 transition-colors"
+          >
+            {l.name}
+          </a>
+        ))}
       </div>
 
       {/* ── Copyright ── */}

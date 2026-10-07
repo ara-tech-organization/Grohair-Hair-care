@@ -1,6 +1,6 @@
 export default function StickyBottomCta() {
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[425px] min-w-[320px] z-50 px-3 py-2 bg-white shadow-[0_-2px_12px_rgba(0,0,0,0.15)]">
+    <div className="px-3 py-2 bg-white shadow-[0_-2px_12px_rgba(0,0,0,0.15)]">
       <a
         href="#book"
         className="btn-shimmer flex items-center justify-center gap-2 w-full text-white text-[14px] font-bold py-[13px] rounded-2xl uppercase tracking-wide active:scale-95 transition-all shadow-[0_4px_15px_rgba(139,0,0,0.3)]"

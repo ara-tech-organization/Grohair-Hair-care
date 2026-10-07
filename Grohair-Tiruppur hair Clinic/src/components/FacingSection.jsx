@@ -39,7 +39,7 @@ export default function FacingSection() {
   const listRef = useScrollReveal()
 
   return (
-    <section className="px-4 py-7 bg-white">
+    <section id="problems" className="px-4 py-7 bg-white">
       {/* Heading */}
       <h2 className="text-[20px] font-extrabold text-gray-900 text-center mb-1">
         Are you facing <span className="text-red-600">Hair Problems?</span>

@@ -1,19 +1,19 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
-import gfcImg  from '../assets/gfc.jpg'
-import prpImg  from '../assets/prp.jpg'
-import mesoImg   from '../assets/mesotheraphy.jpg'
-import scalpImg  from '../assets/Scalp Treatments.jpg'
+import hairFallImg from '../assets/Hair Fall Treatment.png'
+import gfcImg from '../assets/gfc.jpg'
+import mesoImg from '../assets/mesotheraphy.jpg'
+import scalpImg from '../assets/Scalp Treatments.jpg'
 
 const treatments = [
   {
     emoji: '💉',
-    title: 'PRP Treatment',
+    title: 'Hair Fall Treatment',
     lines: [
       'Boost natural hair growth using your own growth factors.',
       'Strengthens hair roots and reduces hair fall effectively.',
     ],
-    img: prpImg,
+    img: hairFallImg,
     accent: '#c0001a',
     tag: 'Most Popular',
   },
@@ -29,17 +29,6 @@ const treatments = [
     tag: 'Advanced',
   },
   {
-    emoji: '🧴',
-    title: 'Dandruff & Scalp Treatments',
-    lines: [
-      'Target the root cause of dandruff and scalp issues.',
-      'Reduces itching, flakes, and restores scalp health.',
-    ],
-    img: scalpImg,
-    accent: '#0891b2',
-    tag: 'Scalp Care',
-  },
-  {
     emoji: '🌿',
     title: 'Mesotherapy',
     lines: [
@@ -49,6 +38,17 @@ const treatments = [
     img: mesoImg,
     accent: '#16a34a',
     tag: 'Nourishing',
+  },
+  {
+    emoji: '🧴',
+    title: 'Dandruff & Scalp Treatments',
+    lines: [
+      'Target the root cause of dandruff and scalp issues.',
+      'Reduces itching, flakes, and restores scalp health.',
+    ],
+    img: scalpImg,
+    accent: '#0891b2',
+    tag: 'Scalp Care',
   },
 ]
 
@@ -67,15 +67,15 @@ export default function TreatmentsSection() {
 
       <div ref={listRef} className="reveal-stagger flex flex-col gap-4">
         {treatments.map((t) => {
-          const sectionId = t.title.toLowerCase().includes('prp') ? 'prp' : 
+          const sectionId = t.title.toLowerCase().includes('fall') ? 'hair-fall' :
                             t.title.toLowerCase().includes('gfc') ? 'gfc' :
-                            t.title.toLowerCase().includes('scalp') ? 'scalp' :
-                            t.title.toLowerCase().includes('meso') ? 'meso' : undefined;
+                            t.title.toLowerCase().includes('meso') ? 'meso' :
+                            t.title.toLowerCase().includes('scalp') ? 'scalp' : undefined;
           return (
             <div key={t.title} id={sectionId} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 scroll-mt-24">
               {/* Image area */}
               {t.img ? (
-                <img src={t.img} alt={t.title} className="w-full h-[150px] object-cover" />
+                <img src={t.img} alt={t.title} loading="lazy" className="w-full h-[150px] object-cover" />
               ) : (
                 <div
                   className="w-full h-[150px] flex items-center justify-center text-[48px]"

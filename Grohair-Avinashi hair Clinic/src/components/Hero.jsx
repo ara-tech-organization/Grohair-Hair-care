@@ -1,19 +1,24 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import heroBg from '../assets/hero-bg.jpg'
+import CustomSelect from './CustomSelect'
+
+const BRANCH_OPTIONS = ['RS Puram', 'Avinashi Road']
+const TREATMENT_OPTIONS = ['Hair Transplant', 'Hair Fall Treatment', 'Hair Regrowth Treatment', 'Skin Treatment', 'Other']
 
 export default function Hero() {
   const navigate = useNavigate()
   const [status, setStatus] = useState('idle') // idle | sending | error
-  const [form, setForm] = useState({ name: '', email: '', phone: '', date: '', time: '', message: '' })
+  const [form, setForm] = useState({ name: '', city: '', phone: '', branch: '', treatment: '' })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  const handleSelect = (name, value) => setForm({ ...form, [name]: value })
 
   async function handleSubmit(e) {
     e.preventDefault()
 
     // Basic Validation
-    if (!form.name || !form.phone || !form.date || !form.time) {
+    if (!form.name || !form.city || !form.phone || !form.branch || !form.treatment) {
       alert('Please fill all required fields')
       return
     }
@@ -25,35 +30,20 @@ export default function Hero() {
 
     setStatus('sending')
     try {
-      // Format date from YYYY-MM-DD to DD-MM-YYYY
-      const dateParts = form.date.split('-')
-      const formattedDate = dateParts.length === 3 ? `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}` : form.date
-
-      // Format time from 24h to 12h AM/PM
-      const [h, m] = form.time.split(':')
-      const hour = parseInt(h)
-      const ampm = hour >= 12 ? 'PM' : 'AM'
-      const h12 = hour % 12 || 12
-      const formattedTime = `${h12}:${m} ${ampm}`
-
-      const payload = {
-        ...form,
-        date: formattedDate,
-        time: formattedTime
-      }
-
       const res = await fetch('https://adgrocoimbatore.com/api/email.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(form),
       })
 
       const data = await res.json()
 
       if (data.success) {
-        setForm({ name: '', email: '', phone: '', date: '', time: '', message: '' })
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({ event: 'lead_form_submitted' })
+        setForm({ name: '', city: '', phone: '', branch: '', treatment: '' })
         navigate('/thankyou')
       } else {
         setStatus('error')
@@ -114,43 +104,34 @@ export default function Hero() {
               {/* Name */}
               <input
                 type="text" name="name" value={form.name} onChange={handleChange}
-                placeholder="Your Name" required
+                placeholder="Enter your name" required
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
-              {/* Email */}
+              {/* City */}
               <input
-                type="email" name="email" value={form.email} onChange={handleChange}
-                placeholder="Email Address" required
+                type="text" name="city" value={form.city} onChange={handleChange}
+                placeholder="Enter your city" required
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
               {/* Phone */}
               <input
                 type="tel" name="phone" value={form.phone} onChange={handleChange}
-                placeholder="Phone Number" required pattern="[0-9]{10}"
+                placeholder="Enter your 10-digit mobile number" required pattern="[0-9]{10}"
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
-              {/* Date + Time slot — side by side */}
-              <div className="flex gap-2">
-                <input
-                  type="date" name="date" value={form.date} onChange={handleChange} required
-                  className="flex-1 min-w-0 bg-black/20 text-white/90 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
-                  style={{ colorScheme: 'dark' }}
-                />
-                <input
-                  type="time" name="time" value={form.time} onChange={handleChange} required
-                  className="flex-1 min-w-0 bg-black/20 text-white/90 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
-                  style={{ colorScheme: 'dark' }}
-                />
-              </div>
+              {/* Preferred Clinic Location */}
+              <CustomSelect
+                name="branch" value={form.branch} onSelect={handleSelect}
+                placeholder="Preferred Clinic Location" options={BRANCH_OPTIONS}
+              />
 
-              {/* Message */}
-              <textarea
-                name="message" value={form.message} onChange={handleChange}
-                placeholder="Brief about your concern (optional)" rows={3}
-                className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all resize-none shadow-inner"
+              {/* Select Your Treatment */}
+              <CustomSelect
+                name="treatment" value={form.treatment} onSelect={handleSelect}
+                placeholder="Select Your Treatment" options={TREATMENT_OPTIONS}
               />
 
               {status === 'error' && (
@@ -170,7 +151,7 @@ export default function Hero() {
                     </svg>
                     <span>Sending...</span>
                   </>
-                ) : 'Book a Consultation'}
+                ) : 'Book Your Consultation'}
               </button>
             </form>
 

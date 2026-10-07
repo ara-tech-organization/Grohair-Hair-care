@@ -29,7 +29,7 @@ export default function WhyTrustUs() {
   const trustRef = useScrollReveal()
 
   return (
-    <section className="bg-white">
+    <section id="why-us" className="bg-white">
       {/* ── Stats banner ── */}
       <div className="bg-gray-900 px-4 py-6">
         <h2 className="text-[20px] font-bold text-white text-center mb-5">

@@ -64,6 +64,8 @@ function WipeImg({ src, alt, exitDir, objPos = 'center center' }) {
       <img
         src={current}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover"
         style={{ animation: next ? outAnim : 'none', objectPosition: objPos, transform: 'scale(1.1)' }}
       />
@@ -71,6 +73,8 @@ function WipeImg({ src, alt, exitDir, objPos = 'center center' }) {
         <img
           src={next}
           alt={alt}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ animation: inAnim, objectPosition: objPos, transform: 'scale(1.1)' }}
         />

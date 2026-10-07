@@ -1,4 +1,12 @@
 import footerImg from '../assets/Footer.png'
+import CookieConsentBanner from './CookieConsentBanner'
+
+const legalLinks = [
+  { name: 'Privacy Policy', link: 'https://adgrohairgloskincumbum.in/privacy-policy' },
+  { name: 'Terms & Conditions', link: 'https://adgrohairgloskincumbum.in/terms-and-conditions' },
+  { name: 'Refund & Cancellation Policy', link: 'https://adgrohairgloskincumbum.in/refund-and-cancellation-policy' },
+  { name: 'Cookie Policy', link: 'https://adgrohairgloskincumbum.in/cookie-policy' }
+]
 
 const quickLinks = [
   { name: 'Home', link: '#hero' },
@@ -87,10 +95,27 @@ export default function Footer() {
 
       </div>
 
+      {/* ── Legal links ── */}
+      <div className="px-5 py-4 border-b border-white/10 flex flex-wrap justify-center gap-x-4 gap-y-2">
+        {legalLinks.map((l) => (
+          <a
+            key={l.name}
+            href={l.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-white/40 hover:text-red-500 transition-colors"
+          >
+            {l.name}
+          </a>
+        ))}
+      </div>
+
       {/* ── Copyright ── */}
       <div className="px-5 py-4 text-center">
         <p className="text-[11px] text-white/20">© 2026 GroHair &amp; GloSkin. All rights reserved.</p>
       </div>
+
+      <CookieConsentBanner />
     </footer>
   )
 }

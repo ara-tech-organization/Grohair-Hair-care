@@ -15,6 +15,13 @@ const services = [
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=1st+floor+No+40+trunk+road+Poonamallee+Chennai+600056'
 
+const legalLinks = [
+  { name: 'Privacy Policy', link: 'https://grohairgloskinthirumazhisai.com/privacy-policy.html' },
+  { name: 'Terms & Conditions', link: 'https://grohairgloskinthirumazhisai.com/terms-conditions.html' },
+  { name: 'Refund & Cancellation Policy', link: 'https://grohairgloskinthirumazhisai.com/refund-cancellation-policy.html' },
+  { name: 'Cookie Policy', link: 'https://grohairgloskinthirumazhisai.com/cookie-policy.html' }
+]
+
 export default function Footer() {
   return (
     <footer id="footer" className="bg-[#0f1117]">
@@ -81,6 +88,23 @@ export default function Footer() {
           <span className="text-[12px] text-white/45 hover:text-red-400 active:text-red-400 transition-colors">thirumazhisai@adgrohair.com</span>
         </a>
 
+      </div>
+
+      {/* ── Legal Links ── */}
+      <div className="px-5 py-4 border-b border-white/10 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+        {legalLinks.map((l, i) => (
+          <span key={l.name} className="flex items-center gap-x-3">
+            <a
+              href={l.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] text-white/40 hover:text-red-500 transition-colors"
+            >
+              {l.name}
+            </a>
+            {i < legalLinks.length - 1 && <span className="text-white/15">•</span>}
+          </span>
+        ))}
       </div>
 
       {/* ── Copyright ── */}

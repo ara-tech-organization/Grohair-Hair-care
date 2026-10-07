@@ -46,6 +46,8 @@ export default function Hero() {
       const data = await res.json()
 
       if (data.success) {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({ event: 'lead_form_submitted' })
         navigate('/thankyou')
       } else {
         setStatus('error')

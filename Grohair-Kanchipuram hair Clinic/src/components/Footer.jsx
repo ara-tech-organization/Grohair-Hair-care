@@ -12,6 +12,12 @@ const services = [
   { name: 'Scalp Care', link: '#scalp' },
   { name: 'Mesotherapy', link: '#meso' }
 ]
+const legalLinks = [
+  { name: 'Privacy Policy', link: 'https://adgrohairgloskinkanchipuram.in/privacy-policy' },
+  { name: 'Terms & Conditions', link: 'https://adgrohairgloskinkanchipuram.in/terms-and-conditions' },
+  { name: 'Refund & Cancellation Policy', link: 'https://adgrohairgloskinkanchipuram.in/refund-cancellation-policy' },
+  { name: 'Cookie Policy', link: 'https://adgrohairgloskinkanchipuram.in/cookie-policy' }
+]
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=1st+Floor,+KTS+Towers,+Old+no.15B,+New+No.55,+Nellukara+St,+above+Federal+Bank,+Kanchipuram,+Tamil+Nadu+631502'
 
@@ -21,7 +27,7 @@ export default function Footer() {
 
       {/* ── Logo + tagline ── */}
       <div className="px-5 pt-7 pb-5 border-b border-white/10 flex items-center gap-3 min-[375px]:gap-4 min-[425px]:gap-6">
-        <img src={footerImg} alt="Grohair" className="h-[28px] min-[375px]:h-[32px] min-[425px]:h-[34px] sm:h-12 w-auto object-contain shrink-0" />
+        <img src={footerImg} alt="Grohair" loading="lazy" decoding="async" className="h-[38px] min-[375px]:h-[43px] min-[425px]:h-[46px] sm:h-16 w-auto object-contain shrink-0" />
         <p className="text-[13px] min-[375px]:text-[15px] min-[425px]:text-[14px] text-white/35 leading-relaxed font-semibold whitespace-nowrap">Advanced Grohair &amp; Gloskin<br />Kanchipuram</p>
       </div>
 
@@ -81,6 +87,21 @@ export default function Footer() {
           <span className="text-[12px] text-white/45 hover:text-red-400 active:text-red-400 transition-colors">Kanchipuram@adgrohair.com</span>
         </a>
 
+      </div>
+
+      {/* ── Legal links ── */}
+      <div className="px-5 py-4 border-b border-white/10 flex flex-wrap justify-center gap-x-4 gap-y-2">
+        {legalLinks.map((l) => (
+          <a
+            key={l.name}
+            href={l.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-white/40 hover:text-red-500 transition-colors"
+          >
+            {l.name}
+          </a>
+        ))}
       </div>
 
       {/* ── Copyright ── */}

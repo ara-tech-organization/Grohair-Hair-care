@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import heroBg from '../assets/hero-bg.jpg'
+import PhoneIcon from './PhoneIcon'
+import { useCallPopup } from '../context/CallPopupContext'
 
 export default function Hero() {
   const navigate = useNavigate()
+  const { openCallPopup } = useCallPopup()
   const [status, setStatus] = useState('idle') // idle | sending | error
-  const [form, setForm] = useState({ name: '', email: '', phone: '', date: '', time: '', message: '' })
+  const [form, setForm] = useState({ name: '', city: '', phone: '', date: '', time: '', message: '' })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -13,7 +16,7 @@ export default function Hero() {
     e.preventDefault()
 
     // Basic Validation
-    if (!form.name || !form.phone || !form.date || !form.time) {
+    if (!form.name || !form.city || !form.phone || !form.date || !form.time) {
       alert('Please fill all required fields')
       return
     }
@@ -38,7 +41,7 @@ export default function Hero() {
 
       const payload = {
         name: form.name,
-        email: form.email,
+        city: form.city,
         phone: form.phone,
         date: formattedDate,
         time: formattedTime,
@@ -58,6 +61,10 @@ export default function Hero() {
       const data = await res.json()
 
       if (data.success) {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({
+          event: 'lead_form_submitted'
+        })
         navigate('/thankyou')
       } else {
         setStatus('error')
@@ -122,10 +129,10 @@ export default function Hero() {
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
-              {/* Email */}
+              {/* City */}
               <input
-                type="email" name="email" value={form.email} onChange={handleChange}
-                placeholder="Email Address" required
+                type="text" name="city" value={form.city} onChange={handleChange}
+                placeholder="Your City" required
                 className="w-full bg-black/20 text-white placeholder-white/60 text-[14px] px-4 py-3 rounded-[14px] outline-none focus:border-white border border-white/30 focus:ring-1 focus:ring-white transition-all shadow-inner"
               />
 
@@ -161,21 +168,32 @@ export default function Hero() {
                 <p className="text-red-400 text-[12px] text-center mt-1">Something went wrong. Please try again.</p>
               )}
 
-              {/* Submit */}
-              <button
-                type="submit" disabled={status === 'sending'}
-                className="btn-shimmer w-full transition-colors text-white text-[15px] font-bold py-3.5 rounded-[12px] shadow-lg mt-2 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              >
-                {status === 'sending' ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Sending...</span>
-                  </>
-                ) : 'Book a Consultation'}
-              </button>
+              {/* Submit + Call Now */}
+              <div className="flex gap-2 mt-2">
+                <button
+                  type="button"
+                  onClick={openCallPopup}
+                  className="flex-1 flex items-center justify-center gap-1.5 bg-white/10 text-white border border-white/40 text-[13px] font-bold py-3.5 rounded-[12px] active:scale-95 transition-all"
+                >
+                  <PhoneIcon className="w-4 h-4" />
+                  Call Now
+                </button>
+
+                <button
+                  type="submit" disabled={status === 'sending'}
+                  className="btn-shimmer flex-1 transition-colors text-white text-[14px] font-bold py-3.5 rounded-[12px] shadow-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {status === 'sending' ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span>Sending...</span>
+                    </>
+                  ) : 'Book a Consultation'}
+                </button>
+              </div>
             </form>
 
         </div>

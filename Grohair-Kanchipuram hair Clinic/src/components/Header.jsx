@@ -2,9 +2,9 @@ import logoImg from '../assets/Logo.png'
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between px-4 py-0.5 bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="flex items-center justify-between px-4 py-1.5 bg-white border-b border-gray-200 sticky top-0 z-50">
       {/* Logo */}
-      <img src={logoImg} alt="Grohair" className="h-[38px] sm:h-[50px] w-auto min-w-[60px] object-contain" />
+      <img src={logoImg} alt="Grohair" className="h-[52px] sm:h-[68px] w-auto min-w-[60px] object-contain" />
 
       <div className="flex items-center gap-7 h-full">
         {/* Treatments text-only button — no background */}

@@ -75,7 +75,7 @@ export default function TreatmentsSection() {
             <div key={t.title} id={sectionId} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 scroll-mt-24">
               {/* Image area */}
               {t.img ? (
-                <img src={t.img} alt={t.title} className="w-full h-[150px] object-cover" />
+                <img src={t.img} alt={t.title} loading="lazy" decoding="async" className="w-full h-[150px] object-cover" />
               ) : (
                 <div
                   className="w-full h-[150px] flex items-center justify-center text-[48px]"

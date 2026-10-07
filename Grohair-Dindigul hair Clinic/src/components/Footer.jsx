@@ -1,4 +1,5 @@
 import footerImg from '../assets/Footer.png'
+import CookieConsent from './CookieConsent'
 
 const quickLinks = [
   { name: 'Home', link: '#hero' },
@@ -11,6 +12,12 @@ const services = [
   { name: 'GFC Therapy', link: '#gfc' },
   { name: 'Scalp Care', link: '#scalp' },
   { name: 'Mesotherapy', link: '#meso' }
+]
+const policyLinks = [
+  { name: 'Privacy Policy', link: 'https://adgrohairgloskindindigul.in/privacy-policy' },
+  { name: 'Terms & Conditions', link: 'https://adgrohairgloskindindigul.in/terms-and-conditions' },
+  { name: 'Refund & Cancellation Policy', link: 'https://adgrohairgloskindindigul.in/refund-cancellation-policy' },
+  { name: 'Cookie Policy', link: 'https://adgrohairgloskindindigul.in/cookie-policy' }
 ]
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=1st+floor,+2,+UTHCHAV+MALL,+6,+Trichy+-+Dindugal+Rd,+near+city+hospital,+Gandhiji+Nagar,+Cooperative+Nagar,+Dindigul,+Tamil+Nadu+624001'
@@ -83,10 +90,27 @@ export default function Footer() {
 
       </div>
 
+      {/* ── Policies ── */}
+      <div className="px-5 py-4 border-b border-white/10 flex flex-wrap justify-center gap-x-4 gap-y-2">
+        {policyLinks.map((p) => (
+          <a
+            key={p.name}
+            href={p.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-white/40 hover:text-red-500 transition-colors"
+          >
+            {p.name}
+          </a>
+        ))}
+      </div>
+
       {/* ── Copyright ── */}
       <div className="px-5 py-4 text-center">
         <p className="text-[11px] text-white/20">© 2026 GroHair &amp; GloSkin. All rights reserved.</p>
       </div>
+
+      <CookieConsent />
     </footer>
   )
 }

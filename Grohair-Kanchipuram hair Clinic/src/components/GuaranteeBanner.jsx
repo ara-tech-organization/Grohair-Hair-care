@@ -6,6 +6,8 @@ export default function GuaranteeBanner() {
       <img
         src={guaranteeImg}
         alt="Guarantee"
+        loading="lazy"
+        decoding="async"
         className="w-full object-contain"
       />
     </div>

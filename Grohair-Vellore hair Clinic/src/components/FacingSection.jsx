@@ -78,10 +78,10 @@ export default function FacingSection() {
 
       {/* CTA link */}
       <a
-        href="tel:+910000000000"
+        href="tel:+917571856789"
         className="mt-5 flex items-center justify-center gap-2 text-red-700 text-[13px] font-semibold"
       >
-        Talk to a doctor now
+        Talk to a doctor now: 75718 56789
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
           <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
